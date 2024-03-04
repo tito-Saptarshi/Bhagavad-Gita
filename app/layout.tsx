@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/component/shared/Navbar";
+import Sidebar from "@/component/shared/Sidebar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +18,24 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <head>
+        <link
+          href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"
+          rel="stylesheet"
+        />
+      </head>
+      <body className={inter.className}>
+        {/* <Navbar /> */}
+        <main className=" flex-row">
+          <Sidebar />
+          <section className="flex min-h-screen flex-1 flex-col  pb-10 pt-10 max-md:pb-32">
+            <div className="w-full max-w-4xl">{children}</div>
+          </section>
+        </main>
+
+        <script src="./node_modules/preline/dist/preline.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+      </body>
     </html>
   );
 }
